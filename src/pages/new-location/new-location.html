@@ -15,4 +15,17 @@
     </ion-item>
     <button ion-button block type="submit" [disabled]="!f.valid">Add Location</button>
   </form>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="findUserLocation()">Locate me</button>
+      </ion-col>
+    </ion-row>
+        <ion-row>
+      <ion-col>
+       <p>Your Location: </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

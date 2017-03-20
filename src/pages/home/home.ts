@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
-import {NewLocationPage} from "../new-location/new-location";
-import {LocationsService} from "../../services/locations.service";
+import { NavController ,ModalController} from 'ionic-angular';
+import { NewLocationPage } from "../new-location/new-location";
+import { LocationPage } from "../location/location";
+import { LocationsService } from "../../services/locations.service";
 
 @Component({
   selector: 'page-home',
@@ -10,19 +11,25 @@ import {LocationsService} from "../../services/locations.service";
 })
 export class HomePage {
 
-  locations:{title:string}[] = [];
+  locations: { title: string }[] = [];
 
-  constructor(public navCtrl: NavController , public loationsServices:LocationsService) {
+  constructor(public navCtrl: NavController, public loationsServices: LocationsService,public modelCtrl:ModalController) {
   }
 
 
-  ionViewWillEnter(){
-    this.locations = this.loationsServices.getPlaces()
+  ionViewWillEnter() {
+    this.loationsServices.getPlaces().then(
+       (locations) =>  this.locations = locations
+    )
   }
 
 
-  onClickAddLocation(){
+  onClickAddLocation() {
     this.navCtrl.push(NewLocationPage)
+  }
+
+  onSeletedLocation(){
+    this.modelCtrl.create(LocationPage).present();
   }
 
 }
