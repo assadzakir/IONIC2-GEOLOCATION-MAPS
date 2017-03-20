@@ -6,6 +6,7 @@ import { NewLocationPage } from '../pages/new-location/new-location';
 import { LocationPage } from '../pages/location/location';
 import {LocationsService} from "../services/locations.service";
 import {IonicStorageModule} from '@ionic/storage';
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,10 @@ import {IonicStorageModule} from '@ionic/storage';
   ],
   imports: [
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+     AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCvaIqT-J-DW6-i4997lt20EuThh7oV_5A'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [

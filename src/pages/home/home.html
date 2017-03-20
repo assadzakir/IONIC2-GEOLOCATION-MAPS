@@ -13,7 +13,7 @@
 
 <ion-content padding>
   <ion-list no-lines>
-    <button ion-item *ngFor="let place of locations" (click)="onSeletedLocation()">
+    <button ion-item *ngFor="let place of locations" (click)="onSeletedLocation(place)">
       {{ place.title }}
     </button>
   </ion-list>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NavController ,ModalController} from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { NewLocationPage } from "../new-location/new-location";
 import { LocationPage } from "../location/location";
 import { LocationsService } from "../../services/locations.service";
@@ -13,13 +13,13 @@ export class HomePage {
 
   locations: { title: string }[] = [];
 
-  constructor(public navCtrl: NavController, public loationsServices: LocationsService,public modelCtrl:ModalController) {
+  constructor(public navCtrl: NavController, public loationsServices: LocationsService, public modelCtrl: ModalController) {
   }
 
 
   ionViewWillEnter() {
     this.loationsServices.getPlaces().then(
-       (locations) =>  this.locations = locations
+      (locations) => this.locations = locations
     )
   }
 
@@ -28,8 +28,8 @@ export class HomePage {
     this.navCtrl.push(NewLocationPage)
   }
 
-  onSeletedLocation(){
-    this.modelCtrl.create(LocationPage).present();
+  onSeletedLocation(place) {
+    this.modelCtrl.create(LocationPage, place).present();
   }
 
 }

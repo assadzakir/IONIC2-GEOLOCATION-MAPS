@@ -15,6 +15,8 @@ import { Geolocation } from 'ionic-native';
 })
 export class NewLocationPage {
 
+  location: { lng: number, lat: number } = { lng: 0, lat: 0 }
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public locationsService: LocationsService) { }
 
   // ionViewDidLoad() {
@@ -22,14 +24,14 @@ export class NewLocationPage {
   // }
 
   onAddPlace(value: { title: string }) {
-    this.locationsService.addPlace(value)
+    this.locationsService.addPlace({ title: value.title, location: this.location })
     this.navCtrl.pop()
   }
 
   findUserLocation() {
     Geolocation.getCurrentPosition().then((loc) => {
-      // resp.coords.latitude
-      // resp.coords.longitude
+      this.location.lat = loc.coords.latitude
+      this.location.lng = loc.coords.longitude
       console.log(loc)
     }).catch((error) => {
       console.log('Error getting location', error);
